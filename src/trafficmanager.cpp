@@ -774,7 +774,8 @@ int TrafficManager::_IssuePacket( int source, int cl )
         }
     } else { //normal mode
         result = _injection_process[cl]->test(source) ? 1 : 0;
-        _requestsOutstanding[source]++;
+        if(result)
+            _requestsOutstanding[source]++;
     } 
     if(result != 0) {
         _packet_seq_no[source]++;
